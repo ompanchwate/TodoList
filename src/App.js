@@ -4,8 +4,10 @@ import { Navbar } from "./Components/Navbar";
 import { Todos } from "./Components/Todos";
 import { Footer } from "./Components/Footer";
 // import { TodosItem } from "./Components/TodosItem";
-import react, { useState, useEffect } from "react"; // Hooks
+import { useState, useEffect } from "react"; // Hooks
 import { Addtodos } from './Components/Addtodos';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { About } from './Components/About';
 
 function App() {
 
@@ -48,20 +50,27 @@ function App() {
   // Using useStates
   const [todos, setTodos] = useState(initTodo)
 
-  useEffect(() => { 
+  useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos))
-    }, [todos])
-    
+  }, [todos])
+
 
   return (
     <>
-      <Navbar title="TodosList" search={true} />
-      <Addtodos addtodo={addtodo} />
-      <Todos todos={todos} onDelete={onDelete} />
-      <Footer />
-      {/* <TodosItem/> */}
+      <BrowserRouter>
+        <Navbar title="TodosList" search={true} />
+        <Routes>
+          <Route path='/' element={
+            <>
+              <Addtodos addtodo={addtodo} />
+              <Todos todos={todos} onDelete={onDelete} />
+            </>
+          } />
+          <Route path = "about" element={<About/>}/>
+
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </>
   );
-}
-
-export default App;
+} export default App;
