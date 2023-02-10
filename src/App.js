@@ -8,6 +8,7 @@ import { useState, useEffect } from "react"; // Hooks
 import { Addtodos } from './Components/Addtodos';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { About } from './Components/About';
+import { Error } from "./Components/Error";
 
 function App() {
 
@@ -58,18 +59,18 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar title="TodosList" search={true} />
+        {/* <Navbar title="TodosList" search={true} /> */}
         <Routes>
           <Route path='/' element={
-            <>
+            <><Navbar title="TodosList" search={true} />
               <Addtodos addtodo={addtodo} />
               <Todos todos={todos} onDelete={onDelete} />
+              <Footer/>
             </>
           } />
-          <Route path = "about" element={<About/>}/>
-
+          <Route path="about" element={<><Navbar title="TodosList" search={true} /><About /><Footer /></>} />
+          <Route path="*" element={<Error />} />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </>
   );

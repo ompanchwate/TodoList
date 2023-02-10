@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 // when the return type is const then write the function name in {} while importing
 // Mostly use {} while returning rafc (react arrow function component) 
@@ -10,10 +10,10 @@ export const Navbar = (props) => {
             <h1 className="text-xl text-red-700 font-bold mr-10">{props.title}</h1>
             <ul className="menu  space-x-14 cursor-pointer hidden sm:flex">
                 <li>
-                    <Link to='/'> Home </Link>
+                    <NavLink to='/'> Home </NavLink>
                 </li>
                 <li>
-                    <Link to='/about'> About </Link>
+                    <NavLink to='/about'> About </NavLink>
                 </li>
             </ul>
         </div>
